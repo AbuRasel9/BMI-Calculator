@@ -30,8 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> bmiCalculation() async {
     final provider = context.read<CalculatorProvider>();
     bmiScore = provider.setCalculation(
-      provider.weight / pow(provider.genderHeight / 100, 2),
+      provider.weight.toDouble() /
+          pow(provider.genderHeight.toDouble() / 100, 2),
     );
+    ;
   }
 
   @override
@@ -68,20 +70,21 @@ class _HomeScreenState extends State<HomeScreen> {
           onSwipeStart: () async {
             await bmiCalculation();
           },
-          onSwipeEnd: () {
+          onSwipeEnd: () async {
             Navigator.push(
               context,
               PageTransition(
-                duration: const Duration(milliseconds: 350,),
-                reverseDuration: const Duration(milliseconds: 350,),
-                child: ScoreScreen(
-                  bmiScoreValue: bmiScore,
+                duration: const Duration(
+                  milliseconds: 350,
                 ),
+                reverseDuration: const Duration(
+                  milliseconds: 350,
+                ),
+                child: const ScoreScreen(),
                 type: PageTransitionType.bottomToTop,
               ),
             );
           },
-          onSwipe: () async {},
         ),
       ),
       appBar: AppBar(
