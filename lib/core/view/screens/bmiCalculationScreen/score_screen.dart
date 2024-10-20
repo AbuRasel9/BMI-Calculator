@@ -25,15 +25,15 @@ class _ScoreScreenState extends State<ScoreScreen> {
       bmiStatus = "Obsese";
       message = "Please work to reduce oesity";
       statusColor = Colors.pink;
-    } else if (provider.calculation > 25) {
+    } else if (provider.calculation >= 25) {
       bmiStatus = "Over Weight";
       message = "Do regular exercise and reduce weight";
       statusColor = Colors.orange;
-    } else if (provider.calculation > 18.5) {
+    } else if (provider.calculation >= 18.5) {
       bmiStatus = "Normal";
       message = "Enjoy, You are fit";
       statusColor = Colors.green;
-    } else if (provider.calculation > 30 && provider.calculation <= 40) {
+    } else if (provider.calculation < 18.5) {
       bmiStatus = "Under Weight";
       message = "Try to increase weiht";
       statusColor = Colors.red;
